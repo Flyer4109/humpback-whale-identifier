@@ -28,7 +28,9 @@ def explore():
     print('-' * 35)
     print('Number of images:', len(labels['Image']))
     print('Number of labels:', labels_desc['Id']['unique'])
-    print('Most common label:', labels_desc['Id']['top'])
+    print('Most common label:', labels_desc['Id']['top'], '(' + str(label_counts[0]) + ')')
+    print(labels_desc['Id']['top'], 'takes up ' + str(round((label_counts[0]/len(labels['Image']) * 100), 2)) +
+          '% of all images')
     print('-' * 35)
 
     # shows the 20 most common labels
