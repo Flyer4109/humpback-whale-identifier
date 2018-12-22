@@ -8,12 +8,17 @@ def explore():
     # reads training labels from csv file and inputs them in DataFrame
     labels = pd.read_csv('../data/train/train.csv')
 
+    # description of labels includes: count, unique, top, and freq
+    labels_desc = labels.describe()
+
     # helpful information of the data
-    print('\nDescription of labels:\n', labels.describe())
+    print('\nDescription of labels:\n', labels_desc)
 
     print('\nNumber of images:', len(labels['Image']))
 
-    print('\nMost frequent label:', labels['Id'].mode()[0])
+    print('\nNumber of labels:', labels_desc['Id']['unique'])
+
+    print('\nMost common  label:', labels_desc['Id']['top'])
 
     # reads every image then gets their shape and creates a DataFrame of shapes
     image_shapes = pd.Series([cv2.imread('../data/train/' + im).shape for im in labels['Image']])
