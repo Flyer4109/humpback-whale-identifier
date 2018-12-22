@@ -12,13 +12,15 @@ def explore():
     labels_desc = labels.describe()
 
     # helpful information of the data
-    print('\nDescription of labels:\n', labels_desc)
+    print('-' * 35 + '\n~ Description of labels ~')
 
-    print('\nNumber of images:', len(labels['Image']))
+    print(labels_desc)
 
-    print('\nNumber of labels:', labels_desc['Id']['unique'])
-
-    print('\nMost common  label:', labels_desc['Id']['top'])
+    print('-' * 35)
+    print('Number of images:', len(labels['Image']))
+    print('Number of labels:', labels_desc['Id']['unique'])
+    print('Most common  label:', labels_desc['Id']['top'])
+    print('-' * 35)
 
     # reads every image then gets their shape and creates a DataFrame of shapes
     image_shapes = pd.Series([cv2.imread('../data/train/' + im).shape for im in labels['Image']])
@@ -30,10 +32,14 @@ def explore():
     image_shape_counts = image_shapes.value_counts()
 
     # shows the 20 most common labels
-    print('\nMost frequent ids:\n', label_counts[:20])
+    print('~ Most frequent ids ~')
+    print(label_counts[:20])
+    print('-' * 35)
 
     # shows the 20 most common image shapes
-    print('\nMost frequent image shapes:\n', image_shape_counts[:20])
+    print('~ Most frequent image shapes ~')
+    print(image_shape_counts[:20])
+    print('-' * 35)
 
     # useful bar charts to help visualise data
     label_counts[1:20].plot(kind='bar', title='The 20 whales with the most images')
