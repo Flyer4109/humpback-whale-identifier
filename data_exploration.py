@@ -8,6 +8,15 @@ def explore():
     # reads training labels from csv file and inputs them in DataFrame
     labels = pd.read_csv('../data/train/train.csv')
 
+    # reads every image then gets their shape and creates a DataFrame of shapes
+    image_shapes = pd.Series([cv2.imread('../data/train/' + im).shape for im in labels['Image']])
+
+    # Series that stores the counts of each label in order
+    label_counts = labels['Id'].value_counts()
+
+    # Series that stores the counts of each image resolution in order
+    image_shape_counts = image_shapes.value_counts()
+
     # description of labels includes: count, unique, top, and freq
     labels_desc = labels.describe()
 
@@ -19,17 +28,8 @@ def explore():
     print('-' * 35)
     print('Number of images:', len(labels['Image']))
     print('Number of labels:', labels_desc['Id']['unique'])
-    print('Most common  label:', labels_desc['Id']['top'])
+    print('Most common label:', labels_desc['Id']['top'])
     print('-' * 35)
-
-    # reads every image then gets their shape and creates a DataFrame of shapes
-    image_shapes = pd.Series([cv2.imread('../data/train/' + im).shape for im in labels['Image']])
-
-    # Series that stores the counts of each label in order
-    label_counts = labels['Id'].value_counts()
-
-    # Series that stores the counts of each image resolution in order
-    image_shape_counts = image_shapes.value_counts()
 
     # shows the 20 most common labels
     print('~ Most frequent ids ~')
