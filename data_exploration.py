@@ -30,10 +30,10 @@ def explore():
     image_shape_counts = image_shapes.value_counts()
 
     # shows the 20 most common labels
-    print('\nMost frequent ids:\n', labels['Id'].value_counts()[:20])
+    print('\nMost frequent ids:\n', label_counts[:20])
 
     # shows the 20 most common image shapes
-    print('\nMost frequent image shapes:\n', image_shapes.value_counts()[:20])
+    print('\nMost frequent image shapes:\n', image_shape_counts[:20])
 
     # useful bar charts to help visualise data
     label_counts[1:20].plot(kind='bar', title='The 20 whales with the most images')
