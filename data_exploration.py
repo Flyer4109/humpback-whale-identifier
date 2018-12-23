@@ -22,6 +22,10 @@ def explore():
 
     # variable to store if all data images are RGB
     is_rgb = True
+    # variable to store if all images have width > height
+    width_greater_height = True
+    #
+    height_greater_count = 0
 
     # iterate through image shapes
     for image_shape in image_shape_counts.index:
@@ -29,6 +33,12 @@ def explore():
         if image_shape[2] != 3:
             # all images are not RGB
             is_rgb = False
+
+        # check if height is greater than width
+        if image_shape[0] > image_shape[1]:
+            height_greater_count += 1
+            # not all images have width > height
+            width_greater_height = False
 
     # helpful information of the data
     print('-' * 35 + '\n~ Description of labels ~')
@@ -47,6 +57,13 @@ def explore():
         print('All images have 3 channels (RGB)')
     else:
         print('Images vary in number of channels')
+
+    # prints whether all images have width > height
+    if width_greater_height:
+        print('Image width is always greater than the height')
+    else:
+        print('The majority of images have width greater than height')
+        print('Only', height_greater_count, 'images do not follow this property')
 
     print('-' * 35)
 
