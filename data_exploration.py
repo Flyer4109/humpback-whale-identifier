@@ -46,9 +46,15 @@ def explore():
     print(labels_desc)
 
     print('-' * 35)
+
     print('Number of images:', len(labels['Image']))
+
     print('Number of labels:', labels_desc['Id']['unique'])
+
     print('Most common label:', labels_desc['Id']['top'], '(' + str(label_counts[0]) + ')')
+
+    print('-' * 35)
+
     print(labels_desc['Id']['top'], 'takes up ' + str(round((label_counts[0]/len(labels['Image']) * 100), 2)) +
           '% of all images')
 
@@ -62,8 +68,7 @@ def explore():
     if width_greater_height:
         print('Image width is always greater than the height')
     else:
-        print('The majority of images have width greater than height')
-        print('Only', height_greater_count, 'images do not follow this property')
+        print('All but', height_greater_count, 'images have widths greater than heights')
 
     print('-' * 35)
 
