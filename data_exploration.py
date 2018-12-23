@@ -20,6 +20,16 @@ def explore():
     # description of labels includes: count, unique, top, and freq
     labels_desc = labels.describe()
 
+    # variable to store if all data images are RGB
+    is_rgb = True
+
+    # iterate through image shapes
+    for image_shape in image_shape_counts.index:
+        # if the third number is not three then it is not RGB
+        if image_shape[2] != 3:
+            # all images are not RGB
+            is_rgb = False
+
     # helpful information of the data
     print('-' * 35 + '\n~ Description of labels ~')
 
@@ -31,6 +41,13 @@ def explore():
     print('Most common label:', labels_desc['Id']['top'], '(' + str(label_counts[0]) + ')')
     print(labels_desc['Id']['top'], 'takes up ' + str(round((label_counts[0]/len(labels['Image']) * 100), 2)) +
           '% of all images')
+
+    # prints whether all images are RGB
+    if is_rgb:
+        print('All images have 3 channels (RGB)')
+    else:
+        print('Images vary in number of channels')
+
     print('-' * 35)
 
     # shows the 20 most common labels
