@@ -82,6 +82,9 @@ def explore():
     print(image_shape_counts[:20])
     print('-' * 35)
 
+    # add input to stop graphs from automatically showing
+    input('Press Enter to continue to graphs...')
+
     # useful bar charts to help visualise data
     label_counts[1:20].plot(kind='bar', title='The 20 whales with the most images')
     plt.ylabel('Count')
